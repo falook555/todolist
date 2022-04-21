@@ -31,8 +31,7 @@ const Dashboard = () => {
                                     <div className="icon">
                                         <i className="ion ion-bag" />
                                     </div>
-                                    {/* <a onClick={() => onRoute()} className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a> */}
-                                    <a className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                                    <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-6">
