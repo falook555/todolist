@@ -41,7 +41,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div style={{color:'white'}}>
+    <div>
       <div className="card-group">
         <div className="col-4">
           <h1 className='text-center'>

@@ -1,6 +1,11 @@
 import React from 'react'
-
+import { useRouter } from 'next/router'
 const Savework = () => {
+
+    const router = useRouter()
+    const { dep } = router.query
+
+    console.log(dep)
     return (
         <div>
             <form action='' method='POST'>
