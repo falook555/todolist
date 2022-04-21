@@ -1,11 +1,49 @@
 import React from 'react'
+import { useRouter } from 'next/router'
+import md5 from 'md5'
+import moment from 'moment'
 
 const Sidebar = () => {
+    const date = moment().format('YYYYMMDDHmmss')
+    const router = useRouter()
+
+    const onRoute = () => {
+        router.push({
+            pathname: '/backend',
+            query: {
+                path: 'savelist',
+                pathcrd: md5('savelist'),
+                d: date,
+                dcrd: md5(date)
+            },
+        })
+    }
+    const onRoute1 = () => {
+        router.push({
+            pathname: '/backend',
+            query: {
+                path: 'dashboard',
+                pathcrd: md5('dashboard'),
+                d: date,
+                dcrd: md5(date)
+            },
+        })
+    }
+    const onRoute2 = () => {
+        router.push({
+            pathname: '/backend',
+            query: {
+                path: 'test',
+                pathcrd: md5('test'),
+                d: date,
+                dcrd: md5(date)
+            },
+        })
+    }
     return (
         <div>
-
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
-                <a href="index3.html" className="brand-link">
+                <a onClick={() => onRoute1()} className="brand-link">
                     <img src="static/dist/img/AdminLTELogo.png" alt="ss" className="brand-image img-circle elevation-3" />
                     <span className="brand-text font-weight-light">AdminLTE 3</span>
                 </a>
@@ -31,10 +69,19 @@ const Sidebar = () => {
                     <nav className="mt-2">
                         <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li className="nav-item">
-                                <a href="pages/widgets.html" className="nav-link">
+                                <a onClick={() => onRoute()} className="nav-link">
                                     <i className="nav-icon fas fa-th" />
                                     <p>
                                         Widgets
+                                        <span className="right badge badge-danger">New</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a onClick={() => onRoute2()} className="nav-link">
+                                    <i className="nav-icon fas fa-th" />
+                                    <p>
+                                        Widgets2
                                         <span className="right badge badge-danger">New</span>
                                     </p>
                                 </a>
