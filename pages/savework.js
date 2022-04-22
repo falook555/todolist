@@ -1,18 +1,77 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
+
+import DataTable from 'react-data-table-component';
+
 const Savework = () => {
 
-    const router = useRouter()
-    const { dep } = router.query
+    const columns = [
+        {
+            name: 'Title',
+            selector: row => row.title,
+        },
+        {
+            name: 'Year',
+            selector: row => row.year,
+        },
+        {
+            name: 'Day',
+            selector: row => row.day,
+        },
+        {
+            name: 'Control',
+            selector: row => row.control,
+        },
+    ];
+
+    const data = [
+        {
+            id: 1,
+            title: 'Beetlejuice',
+            year: '1988',
+            day: '456',
+            control: 'asd',
+        },
+        {
+            id: 2,
+            title: 'Ghostbusters',
+            year: '1984',
+            day: '456',
+            control: 'asd',
+        },
+        {
+            id: 3,
+            title: 'Ghostbusters',
+            year: '1984',
+            day: '456',
+            control: 'asd',
+        },
+        {
+            id: 4,
+            title: 'Ghostbusters',
+            year: '1984',
+            day: '456',
+            control: 'asd',
+        },
+        {
+            id: 5,
+            title: 'Ghostbusters',
+            year: '1984',
+            day: '456',
+            control: 'asd',
+        },
+    ]
+
+    // const router = useRouter()
+    // const { dep } = router.query
     return (
         <div>
-
             <div className="content-wrapper">
                 <div className="content-header">
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1 className="m-0">กรอกข้อมูลการไปทำงาน</h1>
+                                <h1 className="m-0">กรอกข้อมูลการทำงาน</h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
@@ -25,19 +84,10 @@ const Savework = () => {
                 </div>
                 <section className="content">
                     <div className="container-fluid">
-                        <form action='' method='POST'>
-                            <div className="form-group">
-                                <label htmlFor="Name">FName</label>
-                                <input type="text" className="form-control" id="FName" name='fname' placeholder="Enter FName" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="LName">LName</label>
-                                <input type="text" className="form-control" id="LName" name='lname' placeholder="Enter LName" />
-                            </div>
-                            <div>
-                                <button className='btn btn-success btn-block' type='submit'>submit</button>
-                            </div>
-                        </form>
+                        <DataTable
+                            columns={columns}
+                            data={data}
+                        />
                     </div>
                 </section>
             </div>
