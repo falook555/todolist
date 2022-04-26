@@ -30,7 +30,7 @@ class MyDocument extends Document {
                         <link rel="stylesheet" href="static/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
                         <link rel="stylesheet" href="static/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
 
-
+                        
 
                     </div>
 
@@ -55,7 +55,7 @@ class MyDocument extends Document {
                     <script src="static/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
                     <script src="static/dist/js/adminlte.js"></script>
 
-                    {/* DataTables  & Plugins */}
+
                     <script src="static/plugins/datatables/jquery.dataTables.min.js"></script>
                     <script src="static/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
                     <script src="static/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>

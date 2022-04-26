@@ -6,8 +6,8 @@ import Sidebar from '../component/layout/sidebar'
 
 const Backend = () => {
     const o = 3
-    
-    return (    
+
+    return (
         <div>
             <Nav></Nav>
             <Sidebar></Sidebar>
