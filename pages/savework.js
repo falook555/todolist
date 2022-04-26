@@ -63,9 +63,8 @@ const Savework = () => {
     ]
 
     const getList = async () => {
-        let username = 'ict013'
         try {
-            let res = await axios.get(`${Api}/get-work-all/${username}`)
+            let res = await axios.get(`${Api}/get-work-all/${userID}`)
             setData(res.data)
             setDatatable(
                 {
