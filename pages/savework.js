@@ -6,10 +6,12 @@ import axios from 'axios'
 import { MDBDataTableV5 } from 'mdbreact';
 import md5 from 'md5'
 import moment from 'moment'
+import Swal from 'sweetalert2'
+// import Toastr from 'toastr2';
+import 'toastr2/dist/toastr.min.css';
 
 const Api = config.api
-
-
+// const toastr = new Toastr();
 
 const Savework = () => {
 
@@ -20,11 +22,12 @@ const Savework = () => {
     const userID = 'ict013'
     const [data, setData] = useState([])
     const [datatable, setDatatable] = React.useState({})
-    const [formData, setFormData] = useState({ username: userID, going: null, doing: null })
+    const [formData, setFormData] = useState({ username: userID, going: '', doing: '' })
     const [isButton, setIsButton] = useState(false)
     const [txtButtin, setTxtButton] = useState('เพิ่มข้อมูล')
 
-    const date = moment().format('YYYYMMDDHmmss')
+    // const date = moment().format('YYYYMMDDHmmss')
+    const date = moment().format('Y-M-D H:mm:ss')
     const router = useRouter()
 
     const Success = () => {
@@ -39,6 +42,16 @@ const Savework = () => {
                 rescrd: md5('success')
             },
         })
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'การเพิ่มข้อมูลสำเร็จ',
+            showConfirmButton: false,
+            timer: 2000
+        })
+
+        // toastr.success('การเพิ่มข้อมูลสำเร็จ')
     }
 
     const Fail = () => {
@@ -49,9 +62,18 @@ const Savework = () => {
                 pathcrd: md5('savelist'),
                 d: date,
                 dcrd: md5(date),
-                res: 'success',
-                rescrd: md5('success')
+                res: 'fail-No-Data',
+                rescrd: md5('fail-No-Data')
             },
+        })
+        // toastr.error('การเพิ่มข้อมูลไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วน')
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'การเพิ่มข้อมูลไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วน',
+            showConfirmButton: false,
+            timer: 2000
         })
     }
 
@@ -60,20 +82,22 @@ const Savework = () => {
         // console.log(formData)
         setIsButton(true)
         setTxtButton('กำลังบันทึก...')
-
         try {
             let res = await axios.post(`${Api}/add-worklist`, formData)
             console.log(res)
-            if (res.status == 200  && res.data.status == 'ok' ) {
+            if (res.status == 200 && res.data.status == 'ok') {
                 // getList()
                 setIsButton(false)
                 setTxtButton('เพิ่มข้อมูล')
-                 await getList()
-                // Success()
-                // setFormData({ ...formData, doing:'', going:'' })
-
-            }else{
+                getList()
+                Success()
+                setFormData({ ...formData, doing: '', going: '' })
+            } else {
+                setIsButton(false)
+                setTxtButton('เพิ่มข้อมูล')
+                getList()
                 Fail()
+                setFormData({ ...formData, doing: '', going: '' })
             }
 
 
@@ -82,7 +106,52 @@ const Savework = () => {
         }
     }
 
+    const upStatusClick = async (e) => {
+        let statusARR = {
+            'username': userID,
+            td_id: e
+        }
+
+        console.log(statusARR)
+        try {
+            let res = await axios.post(`${Api}/up-status`, statusARR)
+            console.log(res)
+            if (res.status == 200 && res.data.status == 'ok') {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'ปรับสถานะเรียบร้อย',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                getList()
+            } else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'การปรับสถานะมีปัญหา',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                getList()
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const delClick = async (e) => {
+        alert('ลบรายการที่ : '+e)
+
+
+
+    }
+
     const columns = [
+        {
+            label: '#',
+            field: 'td_id',
+        },
         {
             label: 'อาการที่แจ้งมา',
             field: 'td_content',
@@ -102,27 +171,59 @@ const Savework = () => {
         {
             label: 'สถานะ',
             field: 'td_status',
-            sort: 'desc',
+        },
+        {
+            label: 'Control',
+            field: 'control',
         },
     ]
 
     const getList = async () => {
         try {
             let res = await axios.get(`${Api}/get-work-all/${userID}`)
-            console.log(res.data)
+            // console.log(res.data)
             setData(res.data)
+            let dataARR = []
+
+            res.data.map((item, i) => {
+                let timeGo = moment(item.td_insDt).format('H:mm:ss')
+                let timeBack = moment(item.td_upDt).format('H:mm:ss')
+                let colorBTN = item.td_status == 0 ? 'btn btn-warning' : 'btn btn-success'
+                let icon = item.td_status == 0 ? 'fas fa-user-cog' : 'fas fa-user-check'
+                // console.log(timeBack)
+                dataARR.push(
+                    {
+                        'td_id': i + 1,
+                        'td_content': item.td_content,
+                        'td_dept': item.td_dept,
+                        'td_insDt': timeGo,
+                        'td_upDt': timeBack == 'Invalid date' ? 'ยังไม่กลับมา' : timeBack,
+                        'td_status': item.td_status == 0 ? 'ไป ' + item.td_dept : 'อยู่โต๊ะ',
+                        'control': (
+                            <div className="btn-group">
+                                <button type="button" className={colorBTN} onClick={() => upStatusClick(item.td_id)} >
+                                    <i className={icon} />
+                                </button>
+                                <button type="button" className="btn btn-danger" onClick={() => delClick(item.td_id)}>
+                                    <i className="fa fa-trash" />
+                                </button>
+                            </div>
+                        )
+                    }
+
+                )
+            })
+
             setDatatable(
                 {
                     columns: columns,
-                    rows: res.data
+                    rows: dataARR
                 }
             )
         } catch (error) {
             console.log(error)
         }
     }
-
-
 
     // const router = useRouter()
     // const { dep } = router.query
@@ -134,7 +235,7 @@ const Savework = () => {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-sm-6">
-                                <h1 className="m-0">บันทึกรายการ</h1>
+                                <h1 className="m-0">บันทึกรายการ <span className='text-primary'><b>{moment(date).format('MMMM Do YYYY, H:mm:ss ')}</b></span></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
@@ -180,7 +281,7 @@ const Savework = () => {
                                 <h3 className="card-title">ตารางแสดงข้อมูล</h3>
                             </div>
                             <div className="card-body">
-                                <MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={datatable} fullPagination />
+                                <MDBDataTableV5 hover entriesOptions={[10, 20, 25]} entries={10} pagesAmount={4} data={datatable} fullPagination />
                             </div>
                         </div>
 
