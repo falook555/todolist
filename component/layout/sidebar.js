@@ -4,7 +4,7 @@ import md5 from 'md5'
 import moment from 'moment'
 
 const Sidebar = () => {
-    const date = moment().format('YYYYMMDDHmmss')
+    const date = moment().format('Y-M-D H:mm:ss')
     const router = useRouter()
 
     const savelist = () => {
@@ -42,7 +42,7 @@ const Sidebar = () => {
                             <img src="static/dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
                         </div>
                         <div className="info">
-                            <a onClick={() => homePage()} className="d-block">Konthorn Thonsap</a>
+                            <a onClick={() => homePage()} className="d-block">My name is...</a>
                         </div>
                     </div>
                     <div className="form-inline">

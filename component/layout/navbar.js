@@ -1,10 +1,33 @@
 import React from 'react'
-
-const logOut = () => {
-  alert('ออกจากระบบ')
-}
+import { useRouter } from 'next/router'
+import md5 from 'md5'
+import moment from 'moment'
 
 const Nav = () => {
+
+  const router = useRouter()
+  const date = moment().format('Y-M-D H:mm:ss')
+
+  const Logout = () => {
+    router.push({
+      pathname: '/login',
+      query: {
+        path: 'login',
+        pathcrd: md5('login'),
+        d: date,
+        dcrd: md5(date),
+        res: 'logout',
+        rescrd: md5('logout')
+      },
+    })
+  }
+
+  const logOut = () => {
+    localStorage.removeItem('token')
+    Logout()
+  }
+
+
   return (
     <div>
       <nav className="main-header navbar navbar-expand navbar-white navbar-light">

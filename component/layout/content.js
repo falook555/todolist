@@ -9,7 +9,6 @@ import md5 from 'md5'
 const Content = () => {
     const router = useRouter()
     const { path, pathcrd } = router.query
-    // console.log(path)
 
     return (
         <div>

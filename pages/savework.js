@@ -7,27 +7,35 @@ import { MDBDataTableV5 } from 'mdbreact';
 import md5 from 'md5'
 import moment from 'moment'
 import Swal from 'sweetalert2'
-// import Toastr from 'toastr2';
 import 'toastr2/dist/toastr.min.css';
+import jwt_decode from "jwt-decode"
 
 const Api = config.api
-// const toastr = new Toastr();
 
 const Savework = () => {
+    // let [checkToken, setcheCkToken] = useState('')
 
     useEffect(() => {
+        let token = localStorage.getItem('token')
+        let decode = jwt_decode(token)
+        // checkToken = setcheCkToken(token)
+        // checkToken == '' ? console.log('null EF') : console.log('Not null EF')
+        setProfile(decode)
+        setFormData({ ...formData, username: decode.username })
         getList()
-    }, []);
+    }, [])
 
-    const userID = 'ict013'
+    //---------------------------------------------------------------------------------------------------------------------------- SET ตัวแปร
     const [data, setData] = useState([])
     const [datatable, setDatatable] = React.useState({})
-    const [formData, setFormData] = useState({ username: userID, going: '', doing: '' })
+    const [profile, setProfile] = React.useState({})
+    const [formData, setFormData] = useState({ username: '', going: '', doing: '' })
     const [isButton, setIsButton] = useState(false)
     const [txtButtin, setTxtButton] = useState('เพิ่มข้อมูล')
-
-    // const date = moment().format('YYYYMMDDHmmss')
     const date = moment().format('Y-M-D H:mm:ss')
+    //---------------------------------------------------------------------------------------------------------------------------- SET ตัวแปร
+
+
     const router = useRouter()
 
     const Success = () => {
@@ -50,8 +58,6 @@ const Savework = () => {
             showConfirmButton: false,
             timer: 2000
         })
-
-        // toastr.success('การเพิ่มข้อมูลสำเร็จ')
     }
 
     const Fail = () => {
@@ -66,7 +72,6 @@ const Savework = () => {
                 rescrd: md5('fail-No-Data')
             },
         })
-        // toastr.error('การเพิ่มข้อมูลไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วน')
 
         Swal.fire({
             position: 'top-end',
@@ -78,15 +83,13 @@ const Savework = () => {
     }
 
     const onSubmit = async () => {
-        // console.log('ff')
         // console.log(formData)
         setIsButton(true)
         setTxtButton('กำลังบันทึก...')
         try {
             let res = await axios.post(`${Api}/add-worklist`, formData)
-            console.log(res)
+            // console.log(res)
             if (res.status == 200 && res.data.status == 'ok') {
-                // getList()
                 setIsButton(false)
                 setTxtButton('เพิ่มข้อมูล')
                 getList()
@@ -106,16 +109,19 @@ const Savework = () => {
         }
     }
 
+    //---------------------------------------------------------------------------------------------------------------------------- UPDATE STATUS
+
     const upStatusClick = async (e) => {
+
         let statusARR = {
-            'username': userID,
+            'username': profile.username,
             td_id: e
         }
 
-        console.log(statusARR)
+        // console.log(statusARR)
         try {
             let res = await axios.post(`${Api}/up-status`, statusARR)
-            console.log(res)
+            // console.log(res)
             if (res.status == 200 && res.data.status == 'ok') {
                 Swal.fire({
                     position: 'top-end',
@@ -128,7 +134,7 @@ const Savework = () => {
             } else {
                 Swal.fire({
                     position: 'top-end',
-                    icon: 'success',
+                    icon: 'error',
                     title: 'การปรับสถานะมีปัญหา',
                     showConfirmButton: false,
                     timer: 1500
@@ -139,14 +145,70 @@ const Savework = () => {
             console.log(error)
         }
     }
+    //---------------------------------------------------------------------------------------------------------------------------- UPDATE STATUS
 
+
+    //---------------------------------------------------------------------------------------------------------------------------- DELETE DATA
     const delClick = async (e) => {
-        alert('ลบรายการที่ : '+e)
+
+        // alert('คุณต้องการลบรายการนี้จริงหรือไม่ : ' + e)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(async (result) => {
+            // console.log(result)
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                let delARR = {
+                    'username': profile.username,
+                    td_id: e
+                }
+
+                // console.log(delARR)
+
+                try {
+                    let res = await axios.post(`${Api}/delete-list`, delARR)
+                    // console.log(res)
+                    if (res.status == 200 && res.data.status == 'ok') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'ลบรายการเรียบร้อย',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        getList()
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'เกิดข้อผิดพลาด',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        getList()
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
 
 
-
+            }
+        })
     }
+    //---------------------------------------------------------------------------------------------------------------------------- DELETE DATA
 
+
+    //---------------------------------------------------------------------------------------------------------------------------- COLUMNS
     const columns = [
         {
             label: '#',
@@ -177,10 +239,18 @@ const Savework = () => {
             field: 'control',
         },
     ]
+    //---------------------------------------------------------------------------------------------------------------------------- POST DATA
+
 
     const getList = async () => {
+        let token = localStorage.getItem('token')
+        let decode = jwt_decode(token)
+
+        const userID = decode.username
+
+        //---------------------------------------------------------------------------------------------------------------------------- POST DATA
         try {
-            let res = await axios.get(`${Api}/get-work-all/${userID}`)
+            let res = await axios.get(`${Api}/get-work-all/${userID}`, { headers: { "token": token } })
             // console.log(res.data)
             setData(res.data)
             let dataARR = []
@@ -223,6 +293,8 @@ const Savework = () => {
         } catch (error) {
             console.log(error)
         }
+        //---------------------------------------------------------------------------------------------------------------------------- POST DATA
+
     }
 
     // const router = useRouter()
@@ -235,7 +307,7 @@ const Savework = () => {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-sm-6">
-                                <h1 className="m-0">บันทึกรายการ <span className='text-primary'><b>{moment(date).format('MMMM Do YYYY, H:mm:ss ')}</b></span></h1>
+                                <h1 className="m-0">บันทึกรายการ <span className='text-primary'><b>{profile.fullname+' '+profile.username}</b></span></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">

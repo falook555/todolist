@@ -13,6 +13,7 @@ export default function Home() {
   // console.log(ict8)
 
   const getData = async () => {
+    // let token = localStorage.getItem('token') , { headers: { "token": token } }
     try {
       let res = await Axios.get(`${Api}/get-work-all/ict008`)
       setIct8(res.data)
