@@ -23,6 +23,7 @@ const Savework = () => {
         setProfile(decode)
         setFormData({ ...formData, username: decode.username })
         getList()
+
     }, [])
 
     //---------------------------------------------------------------------------------------------------------------------------- SET ตัวแปร
@@ -30,7 +31,7 @@ const Savework = () => {
     const [datatable, setDatatable] = React.useState({})
     const [profile, setProfile] = React.useState({})
     const [formData, setFormData] = useState({ username: '', going: '', doing: '' })
-    const [isButton, setIsButton] = useState(false)
+    const [isButton, setIsButton] = useState(true)
     const [txtButtin, setTxtButton] = useState('เพิ่มข้อมูล')
     const date = moment().format('Y-M-D H:mm:ss')
     //---------------------------------------------------------------------------------------------------------------------------- SET ตัวแปร
@@ -88,17 +89,17 @@ const Savework = () => {
         setTxtButton('กำลังบันทึก...')
         try {
             let res = await axios.post(`${Api}/add-worklist`, formData)
-            // console.log(res)
+            console.log(res)
             if (res.status == 200 && res.data.status == 'ok') {
-                setIsButton(false)
+                setIsButton(true)
                 setTxtButton('เพิ่มข้อมูล')
-                getList()
+                await getList()
                 Success()
                 setFormData({ ...formData, doing: '', going: '' })
             } else {
-                setIsButton(false)
+                setIsButton(true)
                 setTxtButton('เพิ่มข้อมูล')
-                getList()
+                await getList()
                 Fail()
                 setFormData({ ...formData, doing: '', going: '' })
             }
@@ -112,6 +113,9 @@ const Savework = () => {
     //---------------------------------------------------------------------------------------------------------------------------- UPDATE STATUS
 
     const upStatusClick = async (e) => {
+        console.log(e)
+        console.log(profile)
+
 
         let statusARR = {
             'username': profile.username,
@@ -247,11 +251,11 @@ const Savework = () => {
         let decode = jwt_decode(token)
 
         const userID = decode.username
-
+        // console.log('dd')
         //---------------------------------------------------------------------------------------------------------------------------- POST DATA
         try {
             let res = await axios.get(`${Api}/get-work-all/${userID}`, { headers: { "token": token } })
-            // console.log(res.data)
+            console.log(res.data)
             setData(res.data)
             let dataARR = []
 
@@ -307,7 +311,7 @@ const Savework = () => {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-sm-6">
-                                <h1 className="m-0">บันทึกรายการ <span className='text-primary'><b>{profile.fullname+' '+profile.username}</b></span></h1>
+                                <h1 className="m-0">บันทึกรายการ <span className='text-primary'><b>{profile.fullname + ' ' + profile.username}</b></span></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
@@ -330,6 +334,11 @@ const Savework = () => {
                                     <input type="text" value={formData.doing} className="form-control" id="doing" placeholder="อาการที่แจ้ง"
                                         onChange={e => {
                                             setFormData({ ...formData, doing: e.target.value })
+                                            if (e.target.value != '' && formData.going != '') {
+                                                setIsButton(false)
+                                            } else {
+                                                setIsButton(true)
+                                            }
                                         }}
                                     />
                                 </div>
@@ -337,7 +346,13 @@ const Savework = () => {
                                     <label htmlFor="going">หน่วยงานที่แจ้ง</label>
                                     <input type="text" value={formData.going} className="form-control" id="going" placeholder="หน่วยงานที่แจ้ง"
                                         onChange={e => {
+                                            // console.log(formData.going)
                                             setFormData({ ...formData, going: e.target.value })
+                                            if (formData.doing != '' && e.target.value != '') {
+                                                setIsButton(false)
+                                            } else {
+                                                setIsButton(true)
+                                            }
                                         }}
                                     />
                                 </div>

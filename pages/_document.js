@@ -41,11 +41,6 @@ class MyDocument extends Document {
 
                     <script src="static/plugins/jquery/jquery.min.js"></script>
                     <script src="static/plugins/jquery-ui/jquery-ui.min.js"></script>
-                    <script src="static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-                    <script src="static/plugins/moment/moment.min.js"></script>
-                    <script src="static/plugins/daterangepicker/daterangepicker.js"></script>
-                    <script src="static/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-                    <script src="static/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
                     <script src="static/dist/js/adminlte.js"></script>
                 </body>
             </Html>

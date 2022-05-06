@@ -22,7 +22,8 @@
     "react-data-table-component": "^7.5.0",
     "react-dom": "18.0.0",
     "react-fontawesome": "^1.7.1",
-    "toastr2": "^3.0.0-alpha.18"
+    "toastr2": "^3.0.0-alpha.18",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "eslint": "8.13.0",
