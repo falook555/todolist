@@ -51,20 +51,17 @@ export default function Home() {
           <table className="table table-sm mt-3">
             <thead>
               <tr>
-                <th>หมายเหตุ</th>
-                <th>เวลาไป</th>
-                <th>เวลากลับ</th>
+                <th>สถานที่แจ้ง</th>
+                <th>ปัญหาที่แจ้ง</th>
                 <th>สถานะ</th>
               </tr>
             </thead>
             <tbody>
               {ict8.map((item, i) => {
                 let color = item.td_status == 0 ? 'fa fa-circle text-danger' : 'fa fa-circle text-info'
-                let timeOutIct8 = item.td_upDt == null ? 'ยังไม่กลับ' : moment(item.td_upDt).format('H:mm')
-                return <tr key={i}>
-                  <td>{item.td_content}</td>
-                  <td>{moment(item.td_insDt).format('H:mm')}</td>
-                  <td>{timeOutIct8}</td>
+                return <tr key={i} className='h4'>
+                  <td>{item.td_dept}</td>
+                  <td>{item.td_case}</td>
                   <td><i className={color} /></td>
                 </tr>
               })}
@@ -78,20 +75,17 @@ export default function Home() {
           <table className="table table-sm mt-3">
             <thead>
               <tr>
-                <th>หมายเหตุ</th>
-                <th>เวลาไป</th>
-                <th>เวลากลับ</th>
+                <th>สถานที่แจ้ง</th>
+                <th>ปัญหาที่แจ้ง</th>
                 <th>สถานะ</th>
               </tr>
             </thead>
             <tbody>
               {ict9.map((item, i) => {
                 let color = item.td_status == 0 ? 'fa fa-circle text-danger' : 'fa fa-circle text-info'
-                let timeOutIct9 = item.td_upDt == null ? 'ยังไม่กลับ' : moment(item.td_upDt).format('H:mm')
-                return <tr key={i}>
-                  <td>{item.td_content}</td>
-                  <td>{moment(item.td_insDt).format('H:mm')}</td>
-                  <td>{timeOutIct9}</td>
+                return <tr key={i} className='h4'>
+                  <td>{item.td_dept}</td>
+                  <td>{item.td_case}</td>
                   <td><i className={color} /></td>
                 </tr>
               })}
@@ -105,20 +99,17 @@ export default function Home() {
           <table className="table table-sm mt-3">
             <thead>
               <tr>
-                <th>หมายเหตุ</th>
-                <th>เวลาไป</th>
-                <th>เวลากลับ</th>
+                <th>สถานที่แจ้ง</th>
+                <th>ปัญหาที่แจ้ง</th>
                 <th>สถานะ</th>
               </tr>
             </thead>
             <tbody>
               {ict13.map((item, i) => {
                 let color = item.td_status == 0 ? 'fa fa-circle text-danger' : 'fa fa-circle text-info'
-                let timeOutIct13 = item.td_upDt == null ? 'ยังไม่กลับ' : moment(item.td_upDt).format('H:mm')
-                return <tr key={i}>
-                  <td>{item.td_content}</td>
-                  <td>{moment(item.td_insDt).format('H:mm')}</td>
-                  <td>{timeOutIct13}</td>
+                return <tr key={i} className='h4'>
+                  <td>{item.td_dept}</td>
+                  <td>{item.td_case}</td>
                   <td><i className={color} /></td>
                 </tr>
               })}
