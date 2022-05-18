@@ -1,6 +1,38 @@
 import React from 'react'
+import axios from 'axios'
+import config from '../../config'
+import { useEffect, useState } from 'react';
+const Api = config.api
 
 const Dashboard = () => {
+
+    const getNUM = async () => {
+        try {
+            let res = await axios.get(`${Api}/get-work-report/ict013`)
+            const status0 = 0
+            const status1 = 0
+            res.data.map((data, i) => {
+                data.td_status == 0 ? status0++ : status1++
+            })
+            setVolumeWorkUnSucc(status0)
+            setVolumeWorkSucc(status1)
+            setVolumeWorkAll(status0+status1)
+            // setVolumeWorkAll(res.data.length)
+            // console.log(status0 +' '+ status1)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const [volumeworkall, setVolumeWorkAll] = useState(0)
+    const [volumeworksucc, setVolumeWorkSucc] = useState(0)
+    const [volumeworkunsucc, setVolumeWorkUnSucc] = useState(0)
+
+    useEffect(() => {
+        getNUM()
+    }, [])
+
     return (
         <div>
             <div className="content-wrapper">
@@ -25,8 +57,8 @@ const Dashboard = () => {
                             <div className="col-lg-4 col-6">
                                 <div className="small-box bg-info">
                                     <div className="inner">
-                                        <h3>150</h3>
-                                        <p>New Orders</p>
+                                        <h3>{volumeworkall}</h3>
+                                        <p>จำนวนงานทั้งหมด</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-bag" />
@@ -37,8 +69,8 @@ const Dashboard = () => {
                             <div className="col-lg-4 col-6">
                                 <div className="small-box bg-danger">
                                     <div className="inner">
-                                        <h3>150</h3>
-                                        <p>New Orders</p>
+                                        <h3>{volumeworksucc}</h3>
+                                        <p>จำนวนงานที่ทำเสร็จทั้งหมด</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-bag" />
@@ -49,8 +81,8 @@ const Dashboard = () => {
                             <div className="col-lg-4 col-6">
                                 <div className="small-box bg-success">
                                     <div className="inner">
-                                        <h3>150</h3>
-                                        <p>New Orders</p>
+                                        <h3>{volumeworkunsucc}</h3>
+                                        <p>จำนวนงานที่ยังทำไม่เสร็จ</p>
                                     </div>
                                     <div className="icon">
                                         <i className="ion ion-bag" />

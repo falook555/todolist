@@ -43,26 +43,30 @@ export default function Home() {
 
   return (
     <div>
-      <div className="card-group">
+      <div className="card-group mt-4">
         <div className="col-4">
           <h1 className='text-center'>
             <b>กฤษฎา</b>
           </h1>
           <table className="table table-sm mt-3">
-            <thead>
+            <thead className='h4'>
               <tr>
                 <th>สถานที่แจ้ง</th>
-                <th>ปัญหาที่แจ้ง</th>
-                <th>สถานะ</th>
+                <th>เวลาออก (นาที)</th>
+                <th>เวลากลับ (นาที)</th>
               </tr>
             </thead>
             <tbody>
               {ict8.map((item, i) => {
-                let color = item.td_status == 0 ? 'fa fa-circle text-danger' : 'fa fa-circle text-info'
-                return <tr key={i} className='h4'>
+                return <tr key={i} className='h3'>
                   <td>{item.td_dept}</td>
-                  <td>{item.td_case}</td>
-                  <td><i className={color} /></td>
+                  <td>{moment(item.td_insDt).format('H:mm:ss')}</td>
+                  <td>
+                    {
+                      item.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                        : moment(item.td_upDt).format('H:mm:ss')
+                    }
+                  </td>
                 </tr>
               })}
             </tbody>
@@ -73,20 +77,24 @@ export default function Home() {
             <b>สุจินต์</b>
           </h1>
           <table className="table table-sm mt-3">
-            <thead>
+            <thead className='h4'>
               <tr>
                 <th>สถานที่แจ้ง</th>
-                <th>ปัญหาที่แจ้ง</th>
-                <th>สถานะ</th>
+                <th>เวลาออก (นาที)</th>
+                <th>เวลากลับ (นาที)</th>
               </tr>
             </thead>
             <tbody>
               {ict9.map((item, i) => {
-                let color = item.td_status == 0 ? 'fa fa-circle text-danger' : 'fa fa-circle text-info'
-                return <tr key={i} className='h4'>
+                return <tr key={i} className='h3'>
                   <td>{item.td_dept}</td>
-                  <td>{item.td_case}</td>
-                  <td><i className={color} /></td>
+                  <td>{moment(item.td_insDt).format('H:mm:ss')}</td>
+                  <td>
+                    {
+                      item.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                        : moment(item.td_upDt).format('H:mm:ss')
+                    }
+                  </td>
                 </tr>
               })}
             </tbody>
@@ -97,20 +105,24 @@ export default function Home() {
             <b>กนต์ธร</b>
           </h1>
           <table className="table table-sm mt-3">
-            <thead>
+            <thead className='h4'>
               <tr>
                 <th>สถานที่แจ้ง</th>
-                <th>ปัญหาที่แจ้ง</th>
-                <th>สถานะ</th>
+                <th>เวลาออก (นาที)</th>
+                <th>เวลากลับ (นาที)</th>
               </tr>
             </thead>
             <tbody>
               {ict13.map((item, i) => {
-                let color = item.td_status == 0 ? 'fa fa-circle text-danger' : 'fa fa-circle text-info'
-                return <tr key={i} className='h4'>
+                return <tr key={i} className='h3'>
                   <td>{item.td_dept}</td>
-                  <td>{item.td_case}</td>
-                  <td><i className={color} /></td>
+                  <td>{moment(item.td_insDt).format('H:mm:ss')}</td>
+                  <td>
+                    {
+                      item.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                        : moment(item.td_upDt).format('H:mm:ss')
+                    }
+                  </td>
                 </tr>
               })}
             </tbody>

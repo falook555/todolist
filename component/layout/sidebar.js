@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { Profiler } from 'react'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react';
 import md5 from 'md5'
 import moment from 'moment'
+import jwt_decode from "jwt-decode"
 
 const Sidebar = () => {
+    // console.log(name)
+    useEffect(() => {
+        let token = localStorage.getItem('token')
+        let decode = jwt_decode(token)
+        setName(decode)
+    }, [])
+
+    const [name, setName] = useState({})
+
     const date = moment().format('Y-M-D H:mm:ss')
     const router = useRouter()
 
@@ -42,7 +53,7 @@ const Sidebar = () => {
                             <img src="static/dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
                         </div>
                         <div className="info">
-                            <a onClick={() => homePage()} className="d-block">My name is...</a>
+                            <a onClick={() => homePage()} className="d-block">{name.fullname}</a>
                         </div>
                     </div>
                     <div className="form-inline">

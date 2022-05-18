@@ -14,13 +14,10 @@ import { Modal, Button } from 'antd';
 const Api = config.api
 
 const Savework = () => {
-    // let [checkToken, setcheCkToken] = useState('')
 
     useEffect(() => {
         let token = localStorage.getItem('token')
         let decode = jwt_decode(token)
-        // checkToken = setcheCkToken(token)
-        // checkToken == '' ? console.log('null EF') : console.log('Not null EF')
         setProfile(decode)
         setFormData({ ...formData, username: decode.username })
         getList()
@@ -36,13 +33,12 @@ const Savework = () => {
     const [isButton, setIsButton] = useState(true)
     const [txtButtin, setTxtButton] = useState('เพิ่มข้อมูล')
     const [id, setID] = useState(0)
-    const date = moment().format('Y-M-D H:mm:ss')
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const date = moment().format('Y-M-D H:mm:ss')
+    const router = useRouter()
     //---------------------------------------------------------------------------------------------------------------------------- SET ตัวแปร
 
-    console.log(formRepair)
-    const router = useRouter()
-
+    //---------------------------------------------------------------------------------------------------------------------------- SUCCESS
     const Success = () => {
         router.push({
             pathname: '/backend',
@@ -64,7 +60,10 @@ const Savework = () => {
             timer: 2000
         })
     }
+    //---------------------------------------------------------------------------------------------------------------------------- SUCCESS
 
+
+    //---------------------------------------------------------------------------------------------------------------------------- FAIL
     const Fail = () => {
         router.push({
             pathname: '/backend',
@@ -86,7 +85,10 @@ const Savework = () => {
             timer: 2000
         })
     }
+    //---------------------------------------------------------------------------------------------------------------------------- FAIL
 
+
+    //---------------------------------------------------------------------------------------------------------------------------- INSERT DATA
     const onSubmit = async () => {
         // console.log(formData)
         setIsButton(true)
@@ -113,16 +115,7 @@ const Savework = () => {
             console.log(error)
         }
     }
-
-    //---------------------------------------------------------------------------------------------------------------------------- UPDATE STATUS
-
-    // const upStatusClick = async (e) => {
-    //     // console.log(e)
-    //     // console.log(profile)
-
-
-    // }
-    //---------------------------------------------------------------------------------------------------------------------------- UPDATE STATUS
+    //---------------------------------------------------------------------------------------------------------------------------- INSERT DATA
 
 
     //---------------------------------------------------------------------------------------------------------------------------- DELETE DATA
@@ -138,7 +131,7 @@ const Savework = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
         }).then(async (result) => {
-            // console.log(result)
+            // console.log(profile.username)
             if (result.isConfirmed) {
                 Swal.fire(
                     'Deleted!',
@@ -215,16 +208,16 @@ const Savework = () => {
     //---------------------------------------------------------------------------------------------------------------------------- POST DATA
 
 
+    //---------------------------------------------------------------------------------------------------------------------------- GET DATA
 
     const getList = async () => {
+
         let token = localStorage.getItem('token')
         let decode = jwt_decode(token)
-
         const userID = decode.username
-        // console.log('dd')
-        //---------------------------------------------------------------------------------------------------------------------------- POST DATA
+
         try {
-            let res = await axios.get(`${Api}/get-work-all/${userID}`, { headers: { "token": token } })
+            let res = await axios.get(`${Api}/get-work-report/${userID}`)
             // console.log(res.data)
             setData(res.data)
             let dataARR = []
@@ -266,56 +259,60 @@ const Savework = () => {
         } catch (error) {
             console.log(error)
         }
-        //---------------------------------------------------------------------------------------------------------------------------- POST DATA
-
     }
 
+    //---------------------------------------------------------------------------------------------------------------------------- GET DATA
 
+
+    //---------------------------------------------------------------------------------------------------------------------------- UPDATE
     const showModal = (id) => {
         setID(id)
         // console.log(id)
         setIsModalVisible(true);
     }
-    const handleOk = async() => {
+    const handleOk = async () => {
         setIsModalVisible(false);
 
-            let data = {
-                'repair': formRepair.repair,
-                'id': id
-            }
+        let data = {
+            'username': formData.username,
+            'repair': formRepair.repair,
+            'id': id
+        }
 
         console.log(id)
-            try {
-                let res = await axios.post(`${Api}/up-repair`, data)
-                // console.log(res)
-                if (res.status == 200 && res.data.status == 'ok') {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'ปรับสถานะเรียบร้อย',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    setFormRepair({ repair: '' })
-                    getList()
-                } else {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'การปรับสถานะมีปัญหา',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    getList()
-                }
-            } catch (error) {
-                console.log(error)
+        try {
+            let res = await axios.post(`${Api}/up-repair`, data)
+            // console.log(res)
+            if (res.status == 200 && res.data.status == 'ok') {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'ปรับสถานะเรียบร้อย',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                setFormRepair({ repair: '' })
+                getList()
+            } else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'การปรับสถานะมีปัญหา',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                getList()
             }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     const handleCancel = () => {
         setIsModalVisible(false);
     };
+
+    //---------------------------------------------------------------------------------------------------------------------------- UPDATE
 
     return (
         <div>
@@ -324,12 +321,12 @@ const Savework = () => {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-sm-6">
-                                <h1 className="m-0">บันทึกรายการ <span className='text-primary'><b>{profile.fullname + ' ' + profile.username}</b></span></h1>
+                                <h1 className="m-0">บันทึกรายการ <span className='text-primary'><b>{profile.fullname}</b></span></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li className="breadcrumb-item active">Dashboard v1</li>
+                                    <li className="breadcrumb-item"><a href="#">หน้าแรก</a></li>
+                                    <li className="breadcrumb-item active">บันทึกรายการ</li>
                                 </ol>
                             </div>
                         </div>
@@ -343,11 +340,11 @@ const Savework = () => {
                             </div>
                             <div className="card-body">
                                 <div className="form-group">
-                                    <label htmlFor="case">อาการที่แจ้ง</label>
-                                    <input type="text" value={formData.case} className="form-control" id="case" placeholder="อาการที่แจ้ง"
+                                    <label htmlFor="dept">หน่วยงานที่แจ้ง</label>
+                                    <input type="text" value={formData.dept} className="form-control" id="dept" placeholder="หน่วยงานที่แจ้ง"
                                         onChange={e => {
-                                            setFormData({ ...formData, case: e.target.value })
-                                            if (e.target.value != '' && formData.dept != '') {
+                                            setFormData({ ...formData, dept: e.target.value })
+                                            if (formData.case != '' && e.target.value != '') {
                                                 setIsButton(false)
                                             } else {
                                                 setIsButton(true)
@@ -356,11 +353,11 @@ const Savework = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="dept">หน่วยงานที่แจ้ง</label>
-                                    <input type="text" value={formData.dept} className="form-control" id="dept" placeholder="หน่วยงานที่แจ้ง"
+                                    <label htmlFor="case">อาการที่แจ้ง</label>
+                                    <input type="text" value={formData.case} className="form-control" id="case" placeholder="อาการที่แจ้ง"
                                         onChange={e => {
-                                            setFormData({ ...formData, dept: e.target.value })
-                                            if (formData.case != '' && e.target.value != '') {
+                                            setFormData({ ...formData, case: e.target.value })
+                                            if (e.target.value != '' && formData.dept != '') {
                                                 setIsButton(false)
                                             } else {
                                                 setIsButton(true)
@@ -387,8 +384,7 @@ const Savework = () => {
                     </div>
                 </section>
             </div>
-            {/* {console.log(isModalVisible)} */}
-            <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={1000}>
+            <Modal title="กรอกข้อมูลวิธีการแก้ไข" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={1000}>
                 <div className="form-group">
                     <label htmlFor="repair">วิธีการแก้ปัญหา</label>
                     <input type="text" value={formRepair.repair} className="form-control" id="repair" placeholder="วิธีการแก้ปัญหา"

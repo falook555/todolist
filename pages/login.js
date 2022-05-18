@@ -73,7 +73,7 @@ const Login = () => {
                         <p className="login-box-msg">Sign in to start your Todolist</p>
                         <span className='text-red'>{MsgErr}</span>
                         <div className="input-group mb-3">
-                            <input type="text" value={formLogin.username} className="form-control" id="username" placeholder="username"
+                            <input type="text" value={formLogin.username} className="form-control" id="username" placeholder="USERNAME"
                                 onChange={e => {
                                     setFormLogin({ ...formLogin, username: e.target.value })
                                 }}
@@ -85,7 +85,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="password" value={formLogin.password} className="form-control" id="password" placeholder="Password"
+                            <input type="password" value={formLogin.password} className="form-control" id="password" placeholder="PASSWORD"
                                 onChange={e => {
                                     setFormLogin({ ...formLogin, password: e.target.value })
                                 }}
