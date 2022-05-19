@@ -1,15 +1,14 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { Modal, Button } from 'antd'
+import { MDBDataTableV5 } from 'mdbreact'
 import config from '../config'
 import axios from 'axios'
-import { MDBDataTableV5 } from 'mdbreact';
-import md5 from 'md5'
 import moment from 'moment'
 import Swal from 'sweetalert2'
-import 'toastr2/dist/toastr.min.css';
 import jwt_decode from "jwt-decode"
-import { Modal, Button } from 'antd';
+import 'toastr2/dist/toastr.min.css'
 
 const Api = config.api
 
@@ -33,8 +32,7 @@ const Savework = () => {
     const [isButton, setIsButton] = useState(true)
     const [txtButtin, setTxtButton] = useState('เพิ่มข้อมูล')
     const [id, setID] = useState(0)
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const date = moment().format('Y-M-D H:mm:ss')
+    const [isModalVisible, setIsModalVisible] = useState(false)
     const router = useRouter()
     //---------------------------------------------------------------------------------------------------------------------------- SET ตัวแปร
 
@@ -209,14 +207,11 @@ const Savework = () => {
 
         try {
             let res = await axios.get(`${Api}/get-work-report/${userID}`)
-            // console.log(res.data)
             setData(res.data)
             let dataARR = []
 
             res.data.map((item, i) => {
                 let timeGo = moment(item.td_insDt).format('Y-M-D')
-                let colorBTN = item.td_status == 0 ? 'btn btn-warning btn-sm' : 'btn btn-success btn-sm'
-                let icon = item.td_status == 0 ? 'fas fa-edit' : 'fas fa-user-check'
                 let repair = item.td_repair == null ? '-' : item.td_repair
 
                 dataARR.push(

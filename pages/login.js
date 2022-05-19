@@ -1,15 +1,15 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
 import config from '../config'
-import { useRouter } from 'next/router'
-import md5 from 'md5'
-import moment from 'moment'
 
 const Api = config.api
 
 const Login = () => {
 
+    const [formLogin, setFormLogin] = useState({ username: '', password: '' })
+    const [MsgErr, setMsgErr] = useState('')
     const router = useRouter()
 
     const True = () => {
@@ -29,9 +29,6 @@ const Login = () => {
             },
         })
     }
-
-    const [formLogin, setFormLogin] = useState({ username: '', password: '' })
-    const [MsgErr, setMsgErr] = useState('')
 
     const onSubmit = async () => {
         try {

@@ -6,32 +6,27 @@ import { useEffect, useState } from 'react'
 const Api = config.api
 
 export default function Home() {
-  // const date = moment().format('H:mm')
   const [ict8, setIct8] = useState([])
   const [ict9, setIct9] = useState([])
   const [ict13, setIct13] = useState([])
-  // console.log(ict8)
 
   const getData = async () => {
     // let token = localStorage.getItem('token') , { headers: { "token": token } }
     try {
       let res = await Axios.get(`${Api}/get-work-all/ict008`)
       setIct8(res.data)
-      // console.log(res)
     } catch (error) {
       console.log(error)
     }
     try {
       let res = await Axios.get(`${Api}/get-work-all/ict009`)
       setIct9(res.data)
-      // console.log(res)
     } catch (error) {
       console.log(error)
     }
     try {
       let res = await Axios.get(`${Api}/get-work-all/ict013`)
       setIct13(res.data)
-      // console.log(res)
     } catch (error) {
       console.log(error)
     }

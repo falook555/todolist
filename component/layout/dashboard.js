@@ -1,14 +1,19 @@
 import React from 'react'
 import axios from 'axios'
 import config from '../../config'
-import { useEffect, useState } from 'react';
-import { Icon } from '@iconify/react';
+import { useEffect, useState } from 'react'
+import { Icon } from '@iconify/react'
 import moment from 'moment'
 
 const Api = config.api
 
 
 const Dashboard = () => {
+
+    const [volumeworkall, setVolumeWorkAll] = useState(0)
+    const [volumeworksucc, setVolumeWorkSucc] = useState(0)
+    const [volumeworkunsucc, setVolumeWorkUnSucc] = useState(0)
+
     const getNUM = async () => {
         try {
             let res = await axios.get(`${Api}/get-work-report/ict013`)
@@ -20,17 +25,10 @@ const Dashboard = () => {
             setVolumeWorkUnSucc(status0)
             setVolumeWorkSucc(status1)
             setVolumeWorkAll(status0 + status1)
-            // setVolumeWorkAll(res.data.length)
-            // console.log(status0 +' '+ status1)
-
         } catch (error) {
             console.log(error)
         }
     }
-
-    const [volumeworkall, setVolumeWorkAll] = useState(0)
-    const [volumeworksucc, setVolumeWorkSucc] = useState(0)
-    const [volumeworkunsucc, setVolumeWorkUnSucc] = useState(0)
 
     useEffect(() => {
         getNUM()

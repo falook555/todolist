@@ -1,24 +1,19 @@
 import React, { Profiler } from 'react'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react';
-import md5 from 'md5'
-import moment from 'moment'
+import { useEffect, useState } from 'react'
 import jwt_decode from "jwt-decode"
 
 const Sidebar = () => {
-    // console.log(name)
-    useEffect(() => {
-        let token = localStorage.getItem('token')
-        let decode = jwt_decode(token)
-        // console.log(decode)
-        setData(decode)
-    }, [])
 
     const [data, setData] = useState({})
     const image = data.image == null ? 'default.jpg' : data.image
-
-    const date = moment().format('Y-M-D H:mm:ss')
     const router = useRouter()
+
+    useEffect(() => {
+        let token = localStorage.getItem('token')
+        let decode = jwt_decode(token)
+        setData(decode)
+    }, [])
 
     const savelist = () => {
         router.push({
@@ -28,6 +23,7 @@ const Sidebar = () => {
             },
         })
     }
+
     const homePage = () => {
         router.push({
             pathname: '/backend',
@@ -36,6 +32,7 @@ const Sidebar = () => {
             },
         })
     }
+
     return (
         <div>
             <aside className="main-sidebar sidebar-dark-primary elevation-4">

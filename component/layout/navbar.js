@@ -1,12 +1,9 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import md5 from 'md5'
-import moment from 'moment'
 
 const Nav = () => {
 
   const router = useRouter()
-  const date = moment().format('Y-M-D H:mm:ss')
 
   const homePage = () => {
     router.push({
@@ -56,7 +53,6 @@ const Nav = () => {
           </li>
         </ul>
       </nav>
-      {/* /.navbar */}
 
     </div>
   )
