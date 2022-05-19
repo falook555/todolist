@@ -43,8 +43,8 @@ export default function Home() {
           <h1 className='text-center'>
             <b>กฤษฎา</b>
           </h1>
-          <table className="table table-sm mt-3">
-            <thead className='h4'>
+          <table className="table table-sm mt-3 h4">
+            <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
                 <th>เวลาออก (นาที)</th>
@@ -53,7 +53,7 @@ export default function Home() {
             </thead>
             <tbody>
               {ict8.map((item8, i8) => {
-                return <tr key={i8} className='h3'>
+                return <tr key={i8}>
                   <td>{item8.td_dept}</td>
                   <td>{moment(item8.td_insDt).format('H:mm:ss')}</td>
                   <td>
@@ -71,8 +71,8 @@ export default function Home() {
           <h1 className='text-center'>
             <b>สุจินต์</b>
           </h1>
-          <table className="table table-sm mt-3">
-            <thead className='h4'>
+          <table className="table table-sm mt-3 h4">
+            <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
                 <th>เวลาออก (นาที)</th>
@@ -81,7 +81,7 @@ export default function Home() {
             </thead>
             <tbody>
               {ict9.map((item9, i9) => {
-                return <tr key={i9} className='h3'>
+                return <tr key={i9}>
                   <td>{item9.td_dept}</td>
                   <td>{moment(item9.td_insDt).format('H:mm:ss')}</td>
                   <td>
@@ -99,8 +99,8 @@ export default function Home() {
           <h1 className='text-center'>
             <b>กนต์ธร</b>
           </h1>
-          <table className="table table-sm mt-3">
-            <thead className='h4'>
+          <table className="table table-sm mt-3 h4">
+            <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
                 <th>เวลาออก (นาที)</th>
@@ -109,7 +109,7 @@ export default function Home() {
             </thead>
             <tbody>
               {ict13.map((item13, i13) => {
-                return <tr key={i13} className='h3'>
+                return <tr key={i13}>
                   <td>{item13.td_dept}</td>
                   <td>{moment(item13.td_insDt).format('H:mm:ss')}</td>
                   <td>
