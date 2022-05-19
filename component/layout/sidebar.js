@@ -10,10 +10,12 @@ const Sidebar = () => {
     useEffect(() => {
         let token = localStorage.getItem('token')
         let decode = jwt_decode(token)
-        setName(decode)
+        // console.log(decode)
+        setData(decode)
     }, [])
 
-    const [name, setName] = useState({})
+    const [data, setData] = useState({})
+    const image = data.image == null ? 'default.jpg' : data.image
 
     const date = moment().format('Y-M-D H:mm:ss')
     const router = useRouter()
@@ -22,10 +24,7 @@ const Sidebar = () => {
         router.push({
             pathname: '/backend',
             query: {
-                path: 'savelist',
-                pathcrd: md5('savelist'),
-                d: date,
-                dcrd: md5(date)
+                path: 'savelist'
             },
         })
     }
@@ -33,10 +32,7 @@ const Sidebar = () => {
         router.push({
             pathname: '/backend',
             query: {
-                path: 'dashboard',
-                pathcrd: md5('dashboard'),
-                d: date,
-                dcrd: md5(date)
+                path: 'dashboard'
             },
         })
     }
@@ -44,16 +40,16 @@ const Sidebar = () => {
         <div>
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
                 <a onClick={() => homePage()} className="brand-link">
-                    <img src="static/dist/img/AdminLTELogo.png" alt="ss" className="brand-image img-circle elevation-3" />
-                    <span className="brand-text font-weight-light">To Do List</span>
+                    <img src="static/dist/img/sswlogo.png" alt="ss" className="brand-image img-circle elevation-3" />
+                    <span className="brand-text font-weight-light">SSW Center</span>
                 </a>
                 <div className="sidebar">
                     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div className="image">
-                            <img src="static/dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
+                            <img src={"static/dist/img/" + image} className="img-circle elevation-2" alt="User Image" />
                         </div>
                         <div className="info">
-                            <a onClick={() => homePage()} className="d-block">{name.fullname}</a>
+                            <a onClick={() => homePage()} className="d-block">{data.fullname}</a>
                         </div>
                     </div>
                     <div className="form-inline">

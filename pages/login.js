@@ -11,18 +11,12 @@ const Api = config.api
 const Login = () => {
 
     const router = useRouter()
-    const date = moment().format('Y-M-D H:mm:ss')
 
     const True = () => {
         router.push({
             pathname: '/backend',
             query: {
-                path: 'dashboard',
-                pathcrd: md5('dashboard'),
-                d: date,
-                dcrd: md5(date),
-                res: 'success',
-                rescrd: md5('success')
+                path: 'dashboard'
             },
         })
     }
@@ -31,12 +25,7 @@ const Login = () => {
         router.push({
             pathname: '/login',
             query: {
-                path: 'login',
-                pathcrd: md5('login'),
-                d: date,
-                dcrd: md5(date),
-                res: 'fail',
-                rescrd: md5('fail')
+                path: 'login'
             },
         })
     }
@@ -67,13 +56,13 @@ const Login = () => {
             <div className="login-box">
                 <div className="card card-outline card-primary">
                     <div className="card-header text-center">
-                        <p className="h1"><b>ToDoList</b></p>
+                        <p className="h1"><b>SSW CENTER</b></p>
                     </div>
                     <div className="card-body">
-                        <p className="login-box-msg">Sign in to start your Todolist</p>
+                        <p className="login-box-msg">Sign in to start your SSW CENTER</p>
                         <span className='text-red'>{MsgErr}</span>
                         <div className="input-group mb-3">
-                            <input type="text" value={formLogin.username} className="form-control" id="username" placeholder="USERNAME"
+                            <input type="text" value={formLogin.username} className="form-control" id="username" placeholder="username"
                                 onChange={e => {
                                     setFormLogin({ ...formLogin, username: e.target.value })
                                 }}
@@ -85,7 +74,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="password" value={formLogin.password} className="form-control" id="password" placeholder="PASSWORD"
+                            <input type="password" value={formLogin.password} className="form-control" id="password" placeholder="password"
                                 onChange={e => {
                                     setFormLogin({ ...formLogin, password: e.target.value })
                                 }}

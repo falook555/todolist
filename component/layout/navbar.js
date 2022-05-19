@@ -8,16 +8,20 @@ const Nav = () => {
   const router = useRouter()
   const date = moment().format('Y-M-D H:mm:ss')
 
+  const homePage = () => {
+    router.push({
+      pathname: '/backend',
+      query: {
+        path: 'dashboard'
+      },
+    })
+  }
+
   const Logout = () => {
     router.push({
       pathname: '/login',
       query: {
-        path: 'login',
-        pathcrd: md5('login'),
-        d: date,
-        dcrd: md5(date),
-        res: 'logout',
-        rescrd: md5('logout')
+        path: 'login'
       },
     })
   }
@@ -33,10 +37,10 @@ const Nav = () => {
       <nav className="main-header navbar navbar-expand navbar-white navbar-light">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link" data-widget="pushmenu" href="#" role="button"><i className="fas fa-bars" /></a>
+            <a className="nav-link" data-widget="pushmenu" role="button"><i className="fas fa-bars" /></a>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="#" className="nav-link">หน้าแรก</a>
+            <a onClick={() => homePage()} className="nav-link">หน้าแรก</a>
           </li>
         </ul>
         <ul className="navbar-nav ml-auto">

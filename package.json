@@ -27,6 +27,7 @@
     "toastr2": "^3.0.0-alpha.18"
   },
   "devDependencies": {
+    "@iconify/react": "^3.2.1",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5"
   }

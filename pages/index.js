@@ -57,14 +57,14 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {ict8.map((item, i) => {
-                return <tr key={i} className='h3'>
-                  <td>{item.td_dept}</td>
-                  <td>{moment(item.td_insDt).format('H:mm:ss')}</td>
+              {ict8.map((item8, i8) => {
+                return <tr key={i8} className='h3'>
+                  <td>{item8.td_dept}</td>
+                  <td>{moment(item8.td_insDt).format('H:mm:ss')}</td>
                   <td>
                     {
-                      item.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
-                        : moment(item.td_upDt).format('H:mm:ss')
+                      item8.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                        : moment(item8.td_upDt).format('H:mm:ss')
                     }
                   </td>
                 </tr>
@@ -85,14 +85,14 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {ict9.map((item, i) => {
-                return <tr key={i} className='h3'>
-                  <td>{item.td_dept}</td>
-                  <td>{moment(item.td_insDt).format('H:mm:ss')}</td>
+              {ict9.map((item9, i9) => {
+                return <tr key={i9} className='h3'>
+                  <td>{item9.td_dept}</td>
+                  <td>{moment(item9.td_insDt).format('H:mm:ss')}</td>
                   <td>
                     {
-                      item.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
-                        : moment(item.td_upDt).format('H:mm:ss')
+                      item9.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                        : moment(item9.td_upDt).format('H:mm:ss')
                     }
                   </td>
                 </tr>
@@ -113,14 +113,14 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {ict13.map((item, i) => {
-                return <tr key={i} className='h3'>
-                  <td>{item.td_dept}</td>
-                  <td>{moment(item.td_insDt).format('H:mm:ss')}</td>
+              {ict13.map((item13, i13) => {
+                return <tr key={i13} className='h3'>
+                  <td>{item13.td_dept}</td>
+                  <td>{moment(item13.td_insDt).format('H:mm:ss')}</td>
                   <td>
                     {
-                      item.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
-                        : moment(item.td_upDt).format('H:mm:ss')
+                      item13.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                        : moment(item13.td_upDt).format('H:mm:ss')
                     }
                   </td>
                 </tr>

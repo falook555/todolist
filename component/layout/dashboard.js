@@ -2,10 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import config from '../../config'
 import { useEffect, useState } from 'react';
+import { Icon } from '@iconify/react';
+import moment from 'moment'
+
 const Api = config.api
 
-const Dashboard = () => {
 
+const Dashboard = () => {
     const getNUM = async () => {
         try {
             let res = await axios.get(`${Api}/get-work-report/ict013`)
@@ -16,7 +19,7 @@ const Dashboard = () => {
             })
             setVolumeWorkUnSucc(status0)
             setVolumeWorkSucc(status1)
-            setVolumeWorkAll(status0+status1)
+            setVolumeWorkAll(status0 + status1)
             // setVolumeWorkAll(res.data.length)
             // console.log(status0 +' '+ status1)
 
@@ -40,12 +43,11 @@ const Dashboard = () => {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1 className="m-0">Dashboard</h1>
+                                <h1 className="m-0"><b>Dashboard <span className="text-primary">{moment().format("Do MMM YY")}</span></b></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li className="breadcrumb-item active">Dashboard v1</li>
+                                    <li className="breadcrumb-item active">Dashboard</li>
                                 </ol>
                             </div>
                         </div>
@@ -57,40 +59,41 @@ const Dashboard = () => {
                             <div className="col-lg-4 col-6">
                                 <div className="small-box bg-info">
                                     <div className="inner">
-                                        <h3>{volumeworkall}</h3>
-                                        <p>จำนวนงานทั้งหมด</p>
+                                        <h3>{volumeworkall} งาน</h3>
+                                        <p>จำนวนงานทั้งหมดที่ได้รับ</p>
                                     </div>
                                     <div className="icon">
-                                        <i className="ion ion-bag" />
+                                        <Icon icon="carbon:summary-kpi" />
                                     </div>
-                                    <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
-                                </div>
-                            </div>
-                            <div className="col-lg-4 col-6">
-                                <div className="small-box bg-danger">
-                                    <div className="inner">
-                                        <h3>{volumeworksucc}</h3>
-                                        <p>จำนวนงานที่ทำเสร็จทั้งหมด</p>
-                                    </div>
-                                    <div className="icon">
-                                        <i className="ion ion-bag" />
-                                    </div>
-                                    <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                                    <a className="small-box-footer">TOTAL NUMBER OF JOBS RECEIVED</a>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-6">
                                 <div className="small-box bg-success">
                                     <div className="inner">
-                                        <h3>{volumeworkunsucc}</h3>
+                                        <h3>{volumeworksucc} งาน</h3>
+                                        <p>จำนวนงานที่ทำเสร็จเรียบร้อยแล้ว</p>
+                                    </div>
+                                    <div className="icon">
+                                        <Icon icon="icon-park-outline:success" />
+                                    </div>
+                                    <a className="small-box-footer">TOTAL NUMBER OF JOBS SUCCESS</a>
+                                </div>
+                            </div>
+                            <div className="col-lg-4 col-6">
+                                <div className="small-box bg-warning">
+                                    <div className="inner">
+                                        <h3>{volumeworkunsucc} งาน</h3>
                                         <p>จำนวนงานที่ยังทำไม่เสร็จ</p>
                                     </div>
                                     <div className="icon">
-                                        <i className="ion ion-bag" />
+                                        <Icon icon="icon-park-outline:message-failed" />
                                     </div>
-                                    <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                                    <a className="small-box-footer">THE NUMBER OF UNFINISHED TASKS</a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
             </div>

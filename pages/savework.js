@@ -43,12 +43,7 @@ const Savework = () => {
         router.push({
             pathname: '/backend',
             query: {
-                path: 'savelist',
-                pathcrd: md5('savelist'),
-                d: date,
-                dcrd: md5(date),
-                res: 'success',
-                rescrd: md5('success')
+                path: 'savelist'
             },
         })
 
@@ -68,12 +63,7 @@ const Savework = () => {
         router.push({
             pathname: '/backend',
             query: {
-                path: 'savelist',
-                pathcrd: md5('savelist'),
-                d: date,
-                dcrd: md5(date),
-                res: 'fail-No-Data',
-                rescrd: md5('fail-No-Data')
+                path: 'savelist'
             },
         })
 
@@ -123,19 +113,20 @@ const Savework = () => {
 
         // alert('คุณต้องการลบรายการนี้จริงหรือไม่ : ' + e)
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'คุณต้องการลบรายการนี้ใช่หรือไม่ ?',
+            text: "คุณจะไม่สามารถย้อนกลับได้หากกดยืนยัน!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            cancelButtonText: 'ยกเลิก',
+            confirmButtonText: 'ใช่ ยืนยันการลบ!'
         }).then(async (result) => {
             // console.log(profile.username)
             if (result.isConfirmed) {
                 Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
+                    'ลบเรียบร้อย!',
+                    'รายการของคุณถูกลบไปแล้ว.',
                     'success'
                 )
                 let delARR = {
@@ -325,7 +316,6 @@ const Savework = () => {
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
-                                    <li className="breadcrumb-item"><a href="#">หน้าแรก</a></li>
                                     <li className="breadcrumb-item active">บันทึกรายการ</li>
                                 </ol>
                             </div>
