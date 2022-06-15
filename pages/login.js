@@ -53,7 +53,7 @@ const Login = () => {
             <div className="login-box">
                 <div className="card card-outline card-primary">
                     <div className="card-header text-center">
-                        <p className="h1"><b>ระบบบันทึกการทำงาน</b></p>
+                        <p className="h1"><b>Login Todolist</b></p>
                     </div>
                     <div className="card-body">
                         <p className="login-box-msg">ล็อกอินเข้าสู่ระบบบันทึกการทำงาน</p>
