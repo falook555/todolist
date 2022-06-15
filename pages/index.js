@@ -35,7 +35,6 @@ export default function Home() {
   useEffect(() => {
 
     const interval = setInterval(() => {
-      console.log('This will run every second!');
       getData()
     }, 10000);
     return () => clearInterval(interval);
