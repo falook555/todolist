@@ -41,7 +41,7 @@ export default function Home() {
       <div className="card-group mt-4">
         <div className="col-4">
           <h1 className='text-center'>
-            <b>กฤษฎา</b>
+            <b>กฤษฎา อนันตะ</b>
           </h1>
           <table className="table table-sm mt-3 h4">
             <thead>
@@ -69,7 +69,7 @@ export default function Home() {
         </div>
         <div className="col-4">
           <h1 className='text-center'>
-            <b>สุจินต์</b>
+            <b>สุจินต์ สุกกล้า</b>
           </h1>
           <table className="table table-sm mt-3 h4">
             <thead>
@@ -97,7 +97,7 @@ export default function Home() {
         </div>
         <div className="col-4">
           <h1 className='text-center'>
-            <b>กนต์ธร</b>
+            <b>กนต์ธร โทนทรัพย์</b>
           </h1>
           <table className="table table-sm mt-3 h4">
             <thead>
