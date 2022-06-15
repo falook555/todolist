@@ -53,10 +53,10 @@ const Login = () => {
             <div className="login-box">
                 <div className="card card-outline card-primary">
                     <div className="card-header text-center">
-                        <p className="h1"><b>SSW CENTER</b></p>
+                        <p className="h1"><b>ระบบบันทึกการทำงาน</b></p>
                     </div>
                     <div className="card-body">
-                        <p className="login-box-msg">Sign in to start your SSW CENTER</p>
+                        <p className="login-box-msg">ล็อกอินเข้าสู่ระบบบันทึกการทำงาน</p>
                         <span className='text-red'>{MsgErr}</span>
                         <div className="input-group mb-3">
                             <input type="text" value={formLogin.username} className="form-control" id="username" placeholder="username"
