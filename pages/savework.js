@@ -265,7 +265,7 @@ const Savework = () => {
             'id': id
         }
 
-        console.log(id)
+        // console.log(id)
         try {
             let res = await axios.post(`${Api}/up-repair`, data)
             // console.log(res)

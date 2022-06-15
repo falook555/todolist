@@ -14,18 +14,15 @@ const Nav = () => {
     })
   }
 
-  const Logout = () => {
+
+  const logOut = () => {
+    localStorage.removeItem('token')
     router.push({
       pathname: '/login',
       query: {
         path: 'login'
       },
     })
-  }
-
-  const logOut = () => {
-    localStorage.removeItem('token')
-    Logout()
   }
 
 
