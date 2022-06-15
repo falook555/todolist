@@ -3,7 +3,10 @@ import axios from 'axios'
 import config from '../../config'
 import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
-import moment from 'moment'
+import jwt_decode from "jwt-decode"
+import * as moment from 'moment';
+import 'moment/locale/th';
+moment.locale('th')
 
 const Api = config.api
 
@@ -16,7 +19,10 @@ const Dashboard = () => {
 
     const getNUM = async () => {
         try {
-            let res = await axios.get(`${Api}/get-work-report/ict013`)
+            let token = localStorage.getItem('token')
+            let decode = jwt_decode(token)
+            // console.log(decode.username)
+            let res = await axios.get(`${Api}/get-work-report/${decode.username}`)
             const status0 = 0
             const status1 = 0
             res.data.map((data, i) => {
@@ -41,7 +47,7 @@ const Dashboard = () => {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1 className="m-0"><b>Dashboard <span className="text-primary">{moment().format("Do MMM YY")}</span></b></h1>
+                                <h1 className="m-0"><b>Dashboard <span className="text-primary">{moment().add(543, 'year').format('LL')}</span></b></h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">

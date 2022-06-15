@@ -4,20 +4,31 @@ import Footer from '../component/layout/footer'
 import Nav from '../component/layout/navbar'
 import Sidebar from '../component/layout/sidebar'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 const Backend = () => {
 
-    let [checkToken, setcheCkToken] = useState('')
+    const [checkToken, setcheCkToken] = useState('')
+    const router = useRouter()
 
     useEffect(() => {
-        let token = localStorage.getItem('token')
-        checkToken = setcheCkToken(token)
+        const token = localStorage.getItem('token')
+        if (token == null || token == '') {
+            router.push({
+                pathname: '/login',
+                query: {
+                    path: 'failed'
+                },
+            })
+        } else {
+            checkToken = setcheCkToken(token)
+        }
     }, [])
 
     return (
         <div>
             {checkToken == '' || checkToken == null ?
-                <a href='http://localhost:3000/login' style={{ marginTop: '20%', marginLeft: '45%' }} type="button" className="btn btn-warning">กลับไปหน้าLogin</a>
+                ''
                 :
                 <>
                     <Nav></Nav>

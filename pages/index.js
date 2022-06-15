@@ -33,14 +33,13 @@ export default function Home() {
   }
 
   useEffect(() => {
-
+    getData()
     const interval = setInterval(() => {
       console.log('refresh')
-      
       getData()
     }, 10000);
     return () => clearInterval(interval);
-    
+
   }, [])
 
   return (
@@ -65,7 +64,7 @@ export default function Home() {
                   <td>{moment(item8.td_insDt).format('H:mm:ss')}</td>
                   <td>
                     {
-                      item8.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                      item8.td_repair == null ? <span style={{ color: 'red' }}>-</span>
                         : moment(item8.td_upDt).format('H:mm:ss')
                     }
                   </td>
@@ -93,7 +92,7 @@ export default function Home() {
                   <td>{moment(item9.td_insDt).format('H:mm:ss')}</td>
                   <td>
                     {
-                      item9.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                      item9.td_repair == null ? <span style={{ color: 'red' }}>-</span>
                         : moment(item9.td_upDt).format('H:mm:ss')
                     }
                   </td>
@@ -121,7 +120,7 @@ export default function Home() {
                   <td>{moment(item13.td_insDt).format('H:mm:ss')}</td>
                   <td>
                     {
-                      item13.td_repair == null ? <span style={{ color: 'red' }}>ยังไม่กลับ</span>
+                      item13.td_repair == null ? <span style={{ color: 'red' }}>-</span>
                         : moment(item13.td_upDt).format('H:mm:ss')
                     }
                   </td>
