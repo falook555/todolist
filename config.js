@@ -1,5 +1,5 @@
 const config = {
-    api: 'http://192.168.0.32:5001'
+    api: 'http://110.49.126.23:5001/'
 }
 
 export default config
