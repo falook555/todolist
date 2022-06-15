@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode"
 const Sidebar = () => {
 
     const [data, setData] = useState({})
-    const image = data.image == null ? 'default.jpg' : data.image
+    const image = data.image == null || data.image == '' ? 'default.jpg' : data.image
     const router = useRouter()
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const Sidebar = () => {
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
                 <a onClick={() => homePage()} className="brand-link">
                     <img src="static/dist/img/sswlogo.png" alt="ss" className="brand-image img-circle elevation-3" />
-                    <span className="brand-text font-weight-light">SSW Center</span>
+                    <span className="brand-text font-weight-light">Todolist</span>
                 </a>
                 <div className="sidebar">
                     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
