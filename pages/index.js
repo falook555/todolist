@@ -36,6 +36,7 @@ export default function Home() {
 
     const interval = setInterval(() => {
       console.log('refresh')
+      
       getData()
     }, 10000);
     return () => clearInterval(interval);
