@@ -44,12 +44,12 @@ export default function Home() {
 
   return (
     <div>
-      <div className="card-group mt-4">
-        <div className="col-4">
-          <h1 className='text-center'>
+      <div className="card-group">
+        <div className='card mt-2 ml-2 mr-1' style={{ height: '1400px', backgroundColor: 'antiquewhite' }}>
+          <h1 className='text-center mt-2'>
             <b>กฤษฎา อนันตะ</b>
           </h1>
-          <table className="table table-sm mt-3 h4">
+          <table className="table table-striped h4">
             <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
@@ -60,7 +60,7 @@ export default function Home() {
             <tbody>
               {ict8.map((item8, i8) => {
                 return <tr key={i8}>
-                  <td>{item8.td_dept}</td>
+                  <td>{item8.td_dept.substring(0, 9)}...</td>
                   <td>{item8.td_case.substring(0, 15)}...</td>
                   <td>{moment(item8.td_insDt).format('H:mm:ss')}</td>
                 </tr>
@@ -68,11 +68,11 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-        <div className="col-4">
-          <h1 className='text-center'>
+        <div className='card mt-2 ml-1 mr-1' style={{ height: '1400px', backgroundColor: 'lightgreen' }}>
+          <h1 className='text-center mt-2'>
             <b>สุจินต์ สุกกล้า</b>
           </h1>
-          <table className="table table-sm mt-3 h4">
+          <table className="table table-striped h4">
             <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
@@ -83,7 +83,7 @@ export default function Home() {
             <tbody>
               {ict9.map((item9, i9) => {
                 return <tr key={i9}>
-                  <td>{item9.td_dept}</td>
+                  <td>{item9.td_dept.substring(0, 9)}...</td>
                   <td>{item9.td_case.substring(0, 15)}...</td>
                   <td>{moment(item9.td_insDt).format('H:mm:ss')}</td>
                 </tr>
@@ -91,11 +91,11 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-        <div className="col-4">
-          <h1 className='text-center'>
+        <div className='card mt-2 ml-1 mr-2' style={{ height: '1400px', backgroundColor: 'lightpink' }}>
+          <h1 className='text-center mt-2'>
             <b>กนต์ธร โทนทรัพย์</b>
           </h1>
-          <table className="table table-sm mt-3 h4">
+          <table className="table table-striped h4">
             <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
@@ -106,7 +106,7 @@ export default function Home() {
             <tbody>
               {ict13.map((item13, i13) => {
                 return <tr key={i13}>
-                  <td>{item13.td_dept}</td>
+                  <td>{item13.td_dept.substring(0, 9)}...</td>
                   <td>{item13.td_case.substring(0, 15)}...</td>
                   <td>{moment(item13.td_insDt).format('H:mm:ss')}</td>
                 </tr>
