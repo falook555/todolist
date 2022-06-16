@@ -25,7 +25,7 @@ class MyDocument extends Document {
                         <link rel="stylesheet" href="static/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
                         <link rel="stylesheet" href="static/dist/css/adminlte.min.css" />
                         <link rel="stylesheet" href="static/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
-                        <link rel="stylesheet" href="static/plugins/pace-progress/themes/blue/pace-theme-flat-top.css" />
+                        {/* <link rel="stylesheet" href="static/plugins/pace-progress/themes/blue/pace-theme-flat-top.css" /> */}
                     </div>
 
 
@@ -40,7 +40,7 @@ class MyDocument extends Document {
                     <script defer src="static/plugins/jquery/jquery.min.js"></script>
                     <script defer src="static/plugins/jquery-ui/jquery-ui.min.js"></script>
                     <script defer src="static/dist/js/adminlte.js"></script>
-                    <script defer src="static/plugins/pace-progress/pace.min.js" />
+                    {/* <script defer src="static/plugins/pace-progress/pace.min.js" /> */}
                 </body>
             </Html>
         )

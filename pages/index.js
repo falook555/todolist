@@ -35,7 +35,7 @@ export default function Home() {
   useEffect(() => {
     getData()
     const interval = setInterval(() => {
-      console.log('refresh')
+      // console.log('refresh')
       getData()
     }, 10000);
     return () => clearInterval(interval);
@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div>
       <div className="card-group">
-        <div className='card mt-2 ml-2 mr-1' style={{ height: '1400px', backgroundColor: 'antiquewhite' }}>
+        <div className='card mt-2 ml-2 mr-1 mb-2' style={{ height: '1400px', backgroundColor: 'antiquewhite' }}>
           <h1 className='text-center mt-2'>
             <b>กฤษฎา อนันตะ</b>
           </h1>
@@ -54,21 +54,23 @@ export default function Home() {
               <tr>
                 <th>สถานที่แจ้ง</th>
                 <th>รายละเอียด</th>
-                <th>เวลาทำงาน (นาที)</th>
+                <th>เวลาทำงาน</th>
               </tr>
             </thead>
             <tbody>
               {ict8.map((item8, i8) => {
+                // console.log(item8.td_upDt == null ? 'เวลาออก : ' + item8.td_insDt : 'เวลากลับ : ' + item8.td_upDt)
+                // item8.td_upDt == null ? item8.td_insDt : item8.td_upDt
                 return <tr key={i8}>
-                  <td>{item8.td_dept.substring(0, 9)}...</td>
-                  <td>{item8.td_case.substring(0, 15)}...</td>
-                  <td>{moment(item8.td_insDt).format('H:mm:ss')}</td>
+                  <td>{item8.td_dept.substring(0, 25)}...</td>
+                  <td>{item8.td_case.substring(0, 25)}...</td>
+                  <td>{moment(item8.td_upDt == null ? item8.td_insDt : item8.td_upDt).format('H:mm:ss')} น.</td>
                 </tr>
               })}
             </tbody>
           </table>
         </div>
-        <div className='card mt-2 ml-1 mr-1' style={{ height: '1400px', backgroundColor: 'lightgreen' }}>
+        <div className='card mt-2 ml-1 mr-1 mb-2' style={{ height: '1400px', backgroundColor: 'lightgreen' }}>
           <h1 className='text-center mt-2'>
             <b>สุจินต์ สุกกล้า</b>
           </h1>
@@ -77,21 +79,21 @@ export default function Home() {
               <tr>
                 <th>สถานที่แจ้ง</th>
                 <th>รายละเอียด</th>
-                <th>เวลาทำงาน (นาที)</th>
+                <th>เวลาทำงาน</th>
               </tr>
             </thead>
             <tbody>
               {ict9.map((item9, i9) => {
                 return <tr key={i9}>
-                  <td>{item9.td_dept.substring(0, 9)}...</td>
-                  <td>{item9.td_case.substring(0, 15)}...</td>
-                  <td>{moment(item9.td_insDt).format('H:mm:ss')}</td>
+                  <td>{item9.td_dept.substring(0, 25)}...</td>
+                  <td>{item9.td_case.substring(0, 25)}...</td>
+                  <td>{moment(item9.td_upDt == null ? item9.td_insDt : item9.td_upDt).format('H:mm:ss')} น.</td>
                 </tr>
               })}
             </tbody>
           </table>
         </div>
-        <div className='card mt-2 ml-1 mr-2' style={{ height: '1400px', backgroundColor: 'lightpink' }}>
+        <div className='card mt-2 ml-1 mr-2 mb-2' style={{ height: '1400px', backgroundColor: 'lightpink' }}>
           <h1 className='text-center mt-2'>
             <b>กนต์ธร โทนทรัพย์</b>
           </h1>
@@ -100,15 +102,15 @@ export default function Home() {
               <tr>
                 <th>สถานที่แจ้ง</th>
                 <th>รายละเอียด</th>
-                <th>เวลาทำงาน (นาที)</th>
+                <th>เวลาทำงาน</th>
               </tr>
             </thead>
             <tbody>
               {ict13.map((item13, i13) => {
                 return <tr key={i13}>
-                  <td>{item13.td_dept.substring(0, 9)}...</td>
-                  <td>{item13.td_case.substring(0, 15)}...</td>
-                  <td>{moment(item13.td_insDt).format('H:mm:ss')}</td>
+                  <td>{item13.td_dept.substring(0, 25)}...</td>
+                  <td>{item13.td_case.substring(0, 25)}...</td>
+                  <td>{moment(item13.td_upDt == null ? item13.td_insDt : item13.td_upDt).format('H:mm:ss')} น.</td>
                 </tr>
               })}
             </tbody>
