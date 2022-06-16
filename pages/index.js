@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div>
       <div className="card-group">
-        <div className='card mt-2 ml-2 mr-1 mb-2' style={{ height: '1400px', backgroundColor: 'antiquewhite' }}>
+        <div className='card mt-2 ml-2 mr-1 mb-2' style={{ height: '1070px', backgroundColor: 'antiquewhite' }}>
           <h1 className='text-center mt-2'>
             <b>กฤษฎา อนันตะ</b>
           </h1>
@@ -70,7 +70,7 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-        <div className='card mt-2 ml-1 mr-1 mb-2' style={{ height: '1400px', backgroundColor: 'lightgreen' }}>
+        <div className='card mt-2 ml-1 mr-1 mb-2' style={{ height: '1070px', backgroundColor: 'lightgreen' }}>
           <h1 className='text-center mt-2'>
             <b>สุจินต์ สุกกล้า</b>
           </h1>
@@ -93,7 +93,7 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-        <div className='card mt-2 ml-1 mr-2 mb-2' style={{ height: '1400px', backgroundColor: 'lightpink' }}>
+        <div className='card mt-2 ml-1 mr-2 mb-2' style={{ height: '1070px', backgroundColor: 'lightpink' }}>
           <h1 className='text-center mt-2'>
             <b>กนต์ธร โทนทรัพย์</b>
           </h1>
