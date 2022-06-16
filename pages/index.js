@@ -53,21 +53,16 @@ export default function Home() {
             <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
-                <th>เวลาออก (นาที)</th>
-                <th>เวลากลับ (นาที)</th>
+                <th>รายละเอียด</th>
+                <th>เวลาทำงาน (นาที)</th>
               </tr>
             </thead>
             <tbody>
               {ict8.map((item8, i8) => {
                 return <tr key={i8}>
                   <td>{item8.td_dept}</td>
+                  <td>{item8.td_case.substring(0, 15)}...</td>
                   <td>{moment(item8.td_insDt).format('H:mm:ss')}</td>
-                  <td>
-                    {
-                      item8.td_repair == null ? <span style={{ color: 'red' }}>-</span>
-                        : moment(item8.td_upDt).format('H:mm:ss')
-                    }
-                  </td>
                 </tr>
               })}
             </tbody>
@@ -81,21 +76,16 @@ export default function Home() {
             <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
-                <th>เวลาออก (นาที)</th>
-                <th>เวลากลับ (นาที)</th>
+                <th>รายละเอียด</th>
+                <th>เวลาทำงาน (นาที)</th>
               </tr>
             </thead>
             <tbody>
               {ict9.map((item9, i9) => {
                 return <tr key={i9}>
                   <td>{item9.td_dept}</td>
+                  <td>{item9.td_case.substring(0, 15)}...</td>
                   <td>{moment(item9.td_insDt).format('H:mm:ss')}</td>
-                  <td>
-                    {
-                      item9.td_repair == null ? <span style={{ color: 'red' }}>-</span>
-                        : moment(item9.td_upDt).format('H:mm:ss')
-                    }
-                  </td>
                 </tr>
               })}
             </tbody>
@@ -109,21 +99,16 @@ export default function Home() {
             <thead>
               <tr>
                 <th>สถานที่แจ้ง</th>
-                <th>เวลาออก (นาที)</th>
-                <th>เวลากลับ (นาที)</th>
+                <th>รายละเอียด</th>
+                <th>เวลาทำงาน (นาที)</th>
               </tr>
             </thead>
             <tbody>
               {ict13.map((item13, i13) => {
                 return <tr key={i13}>
                   <td>{item13.td_dept}</td>
+                  <td>{item13.td_case.substring(0, 15)}...</td>
                   <td>{moment(item13.td_insDt).format('H:mm:ss')}</td>
-                  <td>
-                    {
-                      item13.td_repair == null ? <span style={{ color: 'red' }}>-</span>
-                        : moment(item13.td_upDt).format('H:mm:ss')
-                    }
-                  </td>
                 </tr>
               })}
             </tbody>
