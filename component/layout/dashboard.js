@@ -63,7 +63,7 @@ const Dashboard = () => {
                             <div className="col-lg-4 col-6">
                                 <div className="small-box bg-info">
                                     <div className="inner">
-                                        <h3>{volumeworkall} งาน</h3>
+                                        <h3 className='text-white'>{volumeworkall} งาน</h3>
                                         <p>จำนวนงานทั้งหมดที่ได้รับ</p>
                                     </div>
                                     <div className="icon">
@@ -75,7 +75,7 @@ const Dashboard = () => {
                             <div className="col-lg-4 col-6">
                                 <div className="small-box bg-success">
                                     <div className="inner">
-                                        <h3>{volumeworksucc} งาน</h3>
+                                        <h3 className='text-white'>{volumeworksucc} งาน</h3>
                                         <p>จำนวนงานที่ทำเสร็จเรียบร้อยแล้ว</p>
                                     </div>
                                     <div className="icon">
