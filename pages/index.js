@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div>
       <div className="card-group">
-        <div className='card mt-2 ml-2 mr-1 mb-2' style={{ height: '1060px', backgroundColor: 'blue', color: 'white' }}>
+        <div className='card mt-2 ml-2 mr-1' style={{ height: '1065px', backgroundColor: 'blue', color: 'white' }}>
           <h1 className='text-center mt-2 text-white'>
             <img style={{ borderRadius: '25px', width: '50px' }} src='static/dist/img/ict008.jpg' />
             <b> กฤษฎา อนันตะ</b>
@@ -71,7 +71,7 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-        <div className='card mt-2 ml-1 mr-1 mb-2' style={{ height: '1060px', backgroundColor: 'blue', color: 'white' }}>
+        <div className='card mt-2 ml-1 mr-1' style={{ height: '1065px', backgroundColor: 'blue', color: 'white' }}>
           <h1 className='text-center mt-2 text-white'>
             <img style={{ borderRadius: '25px', width: '50px' }} src='static/dist/img/ict009.jpg' />
             <b> สุจินต์ สุกกล้า</b>
@@ -95,7 +95,7 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-        <div className='card mt-2 ml-1 mr-2 mb-2' style={{ height: '1060px', backgroundColor: 'blue', color: 'white' }}>
+        <div className='card mt-2 ml-1 mr-2' style={{ height: '1065px', backgroundColor: 'blue', color: 'white' }}>
           <h1 className='text-center mt-2 text-white'>
             <img style={{ borderRadius: '25px', width: '50px' }} src='static/dist/img/ict013.jpg' />
             <b> กนต์ธร โทนทรัพย์</b>
