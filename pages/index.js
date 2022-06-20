@@ -63,8 +63,8 @@ export default function Home() {
                 // console.log(item8.td_upDt == null ? 'เวลาออก : ' + item8.td_insDt : 'เวลากลับ : ' + item8.td_upDt)
                 // item8.td_upDt == null ? item8.td_insDt : item8.td_upDt
                 return <tr key={i8}>
-                  <td style={{ backgroundColor: i8 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item8.td_dept.substring(0, 20)}...</td>
-                  <td style={{ backgroundColor: i8 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item8.td_case.substring(0, 25)}...</td>
+                  <td style={{ backgroundColor: i8 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item8.td_dept.substring(0, 10)}{item8.td_dept.length >= 10 ? '...' : ''}</td>
+                  <td style={{ backgroundColor: i8 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item8.td_case.substring(0, 15)}{item8.td_case.length >= 15 ? '...' : ''}</td>
                   <td style={{ backgroundColor: item8.td_upDt == null ? 'red' : 'green', width: '130px', textAlign: 'center' }}>{moment(item8.td_upDt == null ? item8.td_insDt : item8.td_upDt).format('H:mm')} น.</td>
                 </tr>
               })}
@@ -87,8 +87,8 @@ export default function Home() {
             <tbody>
               {ict9.map((item9, i9) => {
                 return <tr key={i9}>
-                  <td style={{ backgroundColor: i9 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item9.td_dept.substring(0, 20)}...</td>
-                  <td style={{ backgroundColor: i9 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item9.td_case.substring(0, 25)}...</td>
+                  <td style={{ backgroundColor: i9 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item9.td_dept.substring(0, 10)}{item9.td_dept.length >= 10 ? '...' : ''}</td>
+                  <td style={{ backgroundColor: i9 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item9.td_case.substring(0, 15)}{item9.td_case.length >= 15 ? '...' : ''}</td>
                   <td style={{ backgroundColor: item9.td_upDt == null ? 'red' : 'green', width: '130px', textAlign: 'center' }}>{moment(item9.td_upDt == null ? item9.td_insDt : item9.td_upDt).format('H:mm')} น.</td>
                 </tr>
               })}
@@ -111,8 +111,8 @@ export default function Home() {
             <tbody>
               {ict13.map((item13, i13) => {
                 return <tr key={i13}>
-                  <td style={{ backgroundColor: i13 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item13.td_dept.substring(0, 20)}...</td>
-                  <td style={{ backgroundColor: i13 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item13.td_case.substring(0, 25)}...</td>
+                  <td style={{ backgroundColor: i13 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item13.td_dept.substring(0, 10)}{item13.td_dept.length >= 10 ? '...' : ''}</td>
+                  <td style={{ backgroundColor: i13 % 2 == 1 ? '#0019D1' : '#001FFF' }}>{item13.td_case.substring(0, 15)}{item13.td_case.length >= 15 ? '...' : ''}</td>
                   <td style={{ backgroundColor: item13.td_upDt == null ? 'red' : 'green', width: '130px', textAlign: 'center' }}>{moment(item13.td_upDt == null ? item13.td_insDt : item13.td_upDt).format('H:mm')} น.</td>
                 </tr>
               })}
